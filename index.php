@@ -15,7 +15,7 @@
         <!-- Page Content -->
         <h1>User Details</h1>
         <hr>
-        <a href="AddNewUser.php" class="btn btn-primary"> Add New </a>
+        <a href="AddNewUser.php" class=""> Add New </a>
         <br/><br/>
     <?php
         $sql = "SELECT * FROM tblUser";
