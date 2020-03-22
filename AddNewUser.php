@@ -15,25 +15,9 @@
             <div class="container">
             <div class="row">
                 <div class="col-6">
-                <div class="form-group">
-                        <label for="ddInitial"> Initail :</label>
-                        <select name='ddInitial' class='form-control col-10'>
-                            <option> Dr. </option>
-                            <option> Mr. </option>
-                            <option> Miss. </option>
-                            <option> Mrs. </option>
-                            <option> Prof. </option>
-                            <option> Asst. Prof. </option>
-                        </select>
-                    </div>
-
                     <div class="form-group">
-                        <label for="txtFName"> First Name :</label>
+                        <label for="txtFName"> Full Name :</label>
                         <input type="text" class="form-control col-10" name="txtFName" placeholder="Enter User Name" />
-                    </div>
-                    <div class="form-group">
-                        <label for="txtLName"> Last Name :</label>
-                        <input type="text" class="form-control col-10" name="txtLName" placeholder="Enter User Name" />
                     </div>
 
                     <div class="form-group">

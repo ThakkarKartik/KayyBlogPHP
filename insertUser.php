@@ -9,7 +9,7 @@
     $Password = $_REQUEST['txtPassword'];
     $CreatedOn = new DateTime();
 
-    $sql = "insert into tblUser values(null,null,'$Name','$Name','$Email','$ContactNo','$Password',now(),1)";
+    $sql = "insert into tblUser values(null,'$Name','$Email','$ContactNo','$Password',now(),1)";
     echo($sql);
     if(mysqli_query($link,$sql))
     {

@@ -11,7 +11,7 @@
             </li>
             <li class="breadcrumb-item active">User Details</li>
         </ol>
-
+       
         <!-- Page Content -->
         <h1>User Details</h1>
         <hr>
@@ -38,7 +38,7 @@
                     ?>
                         <tr>
                             <td> <?php echo ($row['UserID']); ?> </td>
-                            <td> <?php echo ($row['FirstName']); ?> </td>
+                            <td> <?php echo ($row['FullName']); ?> </td>
                             <td> <?php echo ($row['Email']); ?> </td>
                             <td> <?php echo ($row['ContactNo']); ?> </td>
                         </tr>
