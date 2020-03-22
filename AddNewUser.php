@@ -1,16 +1,24 @@
-<?php include("header.php"); ?>
 <?php require_once("config.php"); ?>
-<div class="container">
-    <div id="content-wrapper">
-        <div class="container-fluid">
-            <!-- Breadcrumbs-->
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                    <a href="index.html">Dashboard</a>
-                </li>
-                <li class="breadcrumb-item active">User Details</li>
-            </ol>
-        </div>
+<html>
+<head>
+        <?php include('links.php'); ?>
+        <title> Blank Page </title>
+    </head>
+<body>
+    <?php include('header.php'); ?>
+<div id="content-wrapper">
+
+    <div class="container-fluid">
+
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#"> Home </a>
+            </li>
+            <li class="breadcrumb-item active">Blank PHP Page</li>
+        </ol>
+        <!-- Page Content -->
+
         <form id="frmAdmin" action="insertUser.php" method="GET" enctype="multipart/form-data">
             <div class="container">
             <div class="row">
@@ -45,4 +53,7 @@
         </form>
     </div>
 </div>
-<?php include("footer.php"); ?>
+<?php include('footer.php');?>
+</body>
+<?php include('scripts.php');?>
+</html>

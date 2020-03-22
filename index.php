@@ -1,17 +1,23 @@
-<?php include("header.php"); ?>
-<?php require_once("config.php"); ?>
-<div id="content-wrapper">
+<?php include('config.php'); ?>
+<html>
+<head>
+        <?php include('links.php'); ?>
+        
+        <title> Blank Page </title>
+    </head>
+<body>
+    <?php include('header.php'); ?>
+    <div id="content-wrapper">
 
     <div class="container-fluid">
 
         <!-- Breadcrumbs-->
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="index.html">Dashboard</a>
+                <a href="Dashboard.php"> Dashboard </a>
             </li>
-            <li class="breadcrumb-item active">User Details</li>
+            <li class="breadcrumb-item active">User List</li>
         </ol>
-       
         <!-- Page Content -->
         <h1>User Details</h1>
         <hr>
@@ -49,5 +55,9 @@
         }
         ?>
     </div>
-
-    <?php include("footer.php"); ?>
+    </div>
+    </div>
+    <?php include('footer.php');?>
+</body>
+<?php include('scripts.php');?>
+</html>
