@@ -1,14 +1,12 @@
 <html>
-
 <head>
     <?php include('links.php'); ?>
     <?php include('scripts.php'); ?>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript" src="tinymce/tinymce.min.js"></script>
+    <script type="text/javascript" src="tinymce/tinymce.min.js"></script>
 <script>
 	tinymce.init({
-	  selector: 'textarea#editor',  //Change this value according to your HTML
+	  selector: 'textarea#txtContent',  //Change this value according to your HTML
       auto_focus: 'element1',
       plugins: "image media link table",
 
@@ -32,25 +30,22 @@
             </ol>
 
             <!-- Page Content -->
-            <form method="post">
+            <form method="post" action="InsertBlog.php">
             <h6 class="alert alert-dark"> Add New Blog 
             <input type="submit" value="Save" class="btn btn-success col-lg-2 offset-1" />
             </h6>
             <div class="form-group">
                 <label for="txtTitle"> Title of Blog </label>
-                <input type="text" class="form-control" placeholder="Enter Blog Title"/>
+                <input type="text" name='txtTitle' class="form-control" placeholder="Enter Blog Title"/>
             </div>
             <div class="form-group">
                 <label for="txtTags"> Select Tags for Blog (comma seprated) </label>
-                <input type="text" class="form-control" placeholder="Enter Tags"/>
+                <input type="text" name='txtTags' class="form-control" placeholder="Enter Tags"/>
             </div>
-                <textarea name="editor" id="editor" rows="50" class="form-control"></textarea>
+            <textarea name="txtContent" id="txtContent" rows="50" class="form-control"></textarea>
            <br />
                 </form>
                 <!-- Page Content Ends Here -->
-
-
-
         </div>
     </div>
     <?php //include('footer.php'); 
