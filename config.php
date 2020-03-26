@@ -5,12 +5,23 @@ define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
 define('DB_NAME', 'kayyblog');
- 
+
+session_start(); 
+extract($_REQUEST); // Creating PHP Variables corresponding to Control
 /* Attempt to connect to MySQL database */
 $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
  
 // Check connection
 if($link === false){
     die("ERROR: Could not connect. " . mysqli_connect_error());
+}
+
+function SessionCheck()
+{
+    if($_SESSION["AdminID"]==NULL || $_SESSION["AdminID"]=="")
+    {
+        header("location:index.php");
+    }
+
 }
 ?>
