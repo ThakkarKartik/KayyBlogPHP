@@ -32,7 +32,7 @@ SessionCheck();
         if ($result = mysqli_query($link, $sql)) {
 
         ?>
-            <table class="table table-active table-bordered">
+            <table class="table table-hover">
                 <thead>
                     <tr>
                         <th> # </th>
@@ -62,10 +62,17 @@ SessionCheck();
                                 ?>
                                 <img src="<?php echo $ImgURL;?>" class="img-fluid">
                             </td>
-                            <td> <?php echo ($row['FullName']); ?> </td>
+                            <td>
+                                <a href="userprofile.php?id=<?php echo($row['UserID']) ?>" class="btn-link">
+                                <?php echo ($row['FullName']); ?> 
+                                </a>
+                            </td>
                             <td> <?php echo ($row['Email']); ?> </td>
                             <td> <?php echo ($row['ContactNo']); ?> </td>
-                            <td><i data="<?php echo $row['UserID'];?>" class="status_checks btn <?php echo ($row['IsActive'])? 'btn-success' : 'btn-danger'?>"><?php echo ($row['IsActive'])? 'Active' : 'Inactive'?></i></td>
+                            <td>
+                            <i data="<?php echo $row['UserID'];?>" class="status_checks btn <?php echo ($row['IsActive'])? 'btn-success' : 'btn-danger'?>"><?php echo ($row['IsActive'])? 'Active' : 'Inactive'?></i>
+                            
+                            </td>
                         </tr>
                     <?php } ?>
                 </tbody>

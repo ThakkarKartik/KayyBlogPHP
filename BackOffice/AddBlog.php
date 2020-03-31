@@ -19,9 +19,6 @@
 </head>
 
 <body>
-    <?php 
-    if()
-    ?>
     <?php include('header.php'); ?>
     <div id="content-wrapper">
 
