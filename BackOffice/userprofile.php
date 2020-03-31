@@ -8,12 +8,30 @@
     <script>
 	tinymce.init({
 	  selector: 'textarea#txtContent',  //Change this value according to your HTML
-      auto_focus: 'element1',
-      plugins: "image media link table",
 
 	});
 </script>
+<script>
+    $(function () {
+        $("#").change(function () {
+            readURL(this);
+        });
+    });
 
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                //alert(e.target.result);
+                $('#imgLogo').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script> 
 </head>
 
 <body>
@@ -64,11 +82,15 @@
                             
                         </div>
                         <div class="col-lg-6 col-sm-12">
+                        <div class="form-group">
+                                <label for="txtEmail"> About User (Just put One line statement and Social Links) </label>
+
                         <textarea name="txtContent" id="txtContent" class="form-control"></textarea>
+</div>
                         </div>
                         <div class="container">
                             <br/>
-                            <input type="submit" class="btn btn-primary offset-5" value="Save Changes"/>
+                            <input type="submit" class="btn btn-primary  offset-5" value="Save Changes"/>
                         </div>
                     </div>
                 </form>
