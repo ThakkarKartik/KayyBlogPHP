@@ -1,10 +1,14 @@
 <html>
 <head>
-<?php include('links.php');?>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<?php 
+include('links.php');?>
 <?php include('config.php'); ?>
 </head>
 <body>
-    <?php include('header.php'); ?>
+    <?php include('header.php'); 
+    
+    ?>
     <div class='container'>
     <?php 
     if (isset($_GET["BlogID"])) {
@@ -19,7 +23,10 @@
         <h1> <?php echo $Blog['Title']; ?> </h1>
     </section>
 
-    <span> <?php echo $Blog['Content']; ?></span>
+    <span> <?php 
+    header("Content-Type: text/html; charset=utf-8");
+    echo  $Blog['Content']; ?></span>
+    
 
 
     </div>

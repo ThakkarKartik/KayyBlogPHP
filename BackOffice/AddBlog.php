@@ -33,13 +33,13 @@
             </ol>
 
             <!-- Page Content -->
-            <form method="post">
+            <form method="post" action="insertBlog.php">
             <h6 class="alert alert-dark"> Add New Blog 
             <input type="submit" value="Save" class="btn btn-success col-lg-2 offset-1" />
             </h6>
             <div class="form-group">
                 <label for="txtTitle"> Title of Blog </label>
-                <input type="text" name-='txtTitle' class="form-control" placeholder="Enter Blog Title" required/>
+                <input type="text" name='txtTitle' class="form-control" placeholder="Enter Blog Title" required/>
             </div>
             <div class="form-group">
                 <label for="txtTags"> Select Tags for Blog (comma seprated) </label>
