@@ -1,11 +1,13 @@
 <?php
     require_once('config.php');
     $Title = $_REQUEST['txtTitle'];
-    $Content = $_REQUEST['txtContent'];
-    $Tags = $_REQUEST['txtTags'];
-    
-    $sql = "insert into tblBlog(Title,Content,UserID,CreatedOn, ModifiedOn,TotalViews) values('$Title','$Content',1,now(),now(),0)";
-    echo($sql);
+    //$Content =addslashes($_REQUEST['txtContent']);
+    //$Tags = $_REQUEST['txtTags'];
+    $userID = $_SESSION['UserID'];
+    $sql = "insert into tblBlog(Title,UserID,CreatedOn, ModifiedOn,TotalViews) values('$Title',$userID,now(),now(),0)";
+    //echo($sql);
     mysqli_query($link,$sql) or die(mysqli_error($link));
-    header("location:blank.php");
+    $last_id = mysqli_insert_id($link);
+    //echo($last_id);
+    header("location:BlogEdit.php?id=".$last_id);
 ?>

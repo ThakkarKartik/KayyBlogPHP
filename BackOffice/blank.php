@@ -17,7 +17,16 @@
             <li class="breadcrumb-item active">Blank PHP Page</li>
         </ol>
         <!-- Page Content -->
-
+        <div class="container">
+        <div class="card mx-auto mt-5">
+      <div class="card-header"> 
+              <!-- Title Here -->
+    </div>
+      
+      <div class="card-body">
+          <!-- Add Your Content Here  -->
+      </div>
+        
             
         <!-- Page Content Ends Here -->
         

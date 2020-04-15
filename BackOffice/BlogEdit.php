@@ -1,0 +1,178 @@
+<html>
+
+<head>
+    <?php include('links.php'); ?>
+    <?php include('config.php'); ?>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="tinymce/tinymce.min.js"></script>
+    <script>
+    tinymce.init({
+        selector: 'textarea#txtContent', //Change this value according to your HTML
+        auto_focus: 'element1',
+        plugins: "image media link table",
+
+    });
+    </script>
+    <script>
+    $(document).ready(function() {
+        AddTag();
+    });
+
+    function AddTag() {
+        var BlogId = document.getElementById('hdnBlogID').value;
+        var TagName = document.getElementById('txtTag').value;
+        $.ajax({
+            url: "tag_ins.php",
+            type: "POST",
+            data: {
+                BlogID: BlogId,
+                Name: TagName
+            },
+            cache: false,
+            success: function(result) {
+                //alert(result);
+                if (result != null) {
+                    $('#tags').html(result);
+                }
+            },
+            error: function(result) {
+                alert(result);
+            },
+        });
+    }
+
+    function DelTag(id) {
+        var BlogId = document.getElementById('hdnBlogID').value;
+        $.ajax({
+            url: "tag_del.php",
+            type: "POST",
+            data: {
+                TagID: id,
+                BlogID: BlogId
+            },
+            cache: false,
+            success: function(result) {
+                //alert(result);
+                if (result != null) {
+                    $('#tags').html(result);
+                }
+            },
+            error: function(result) {
+                alert(result);
+            },
+        });
+    }
+    </script>
+    <title> Edit Blog </title>
+</head>
+
+<body>
+    <?php 
+    if(isset($btnSave))
+    {
+        $FileName="";
+        if(!empty($_FILES["txtBlogImage"]["name"]))
+        {
+            $FileName=Date('Ymds').$_FILES["txtBlogImage"]["name"];
+            move_uploaded_file($_FILES["txtBlogImage"]["tmp_name"],"../UploadedFiles/BlogImage/$FileName");
+        }
+        $Content = addslashes($_REQUEST['txtContent']) or die($Content);
+        $BlogID = $_GET['id'];
+        $sql = "update tblBlog set Title = '$txtTitle', Content = '$Content', ModifiedOn = now(), BlogImage='$FileName' where BlogID = $BlogID";
+        mysqli_query($link,$sql) or die(mysqli_error($link)); 
+        header('location:Blogs.php');
+    }
+?>
+    <?php include('header.php'); ?>
+    <div id="content-wrapper">
+
+        <div class="container-fluid">
+
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="Blogs.php"> MyBlogs </a>
+                </li>
+                <li class="breadcrumb-item active"> Blog View </li>
+            </ol>
+            <!-- Page Content -->
+            <?php 
+            SessionCheck();
+            $bid = $_GET['id'];
+            $sql = "select * from tblBlog where BlogID = $bid";
+            $blog = mysqli_fetch_array(mysqli_query($link,$sql)) or die(mysqli_error($link));
+        ?>
+            <div class="card mx-auto mt-2">
+                <div class="card-header">
+                    <?php //echo($blog['Title']) ?>
+                    <form method="post" action="tag_ins.php">
+                        <div class="input-group">
+                            <input type="text" class="form-control col-lg-2" name="txtTag" id="txtTag"
+                                placeholder="Enter New Tag">
+                            <div class="input-group-append">
+                                <input type="button" class="btn btn-secondary" value="Add Tag" onclick="AddTag();" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-body">
+                    <div class="row" id="tags">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <form method="POST" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-8">
+
+                        <?php $title = $blog['Title']; ?>
+                        <div class="input-group mt-3">
+                            <label for="txtTitle" class="col-form-label mr-2"> Title : </label>
+                            <input type="text" class="form-control" name="txtTitle"
+                                value="<?php echo($title)?>">
+
+                        </div>
+                        <input type="hidden" id="hdnBlogID" value="<?php echo($blog['BlogID'])?>">
+                        <br />
+                        <div class="input-group mt-3">
+                            <label for="txtBlogImage" class="col-form-label mr-2"> Blog Image : </label>
+                            <input type="file" class="form-control-file border" name="txtBlogImage" accept="image/*" onchange="preview_image(event)" />
+
+                        </div>
+                    </div>
+                    <div class="col-4 mt-2">
+                            <img src="" class="img img-thumbnail" id="BlogImage" name="BlogImage"/> 
+                    </div>
+                </div>
+                <br />
+                <textarea id="txtContent" name="txtContent" rows=50>
+                          <?php 
+                            echo(stripslashes($blog["Content"])); 
+                          ?>
+                        </textarea>
+                <br />
+                <br />
+                <center>
+                <input type="submit" id="btnSave" name="btnSave" value="Save Changes"
+                    class="btn btn-primary col-lg-2" />
+                    </center>
+            </form>
+            <?php include('footer.php');?>
+</body>
+<?php include('scripts.php');?>
+<script>
+function preview_image(event) 
+{
+ var reader = new FileReader();
+ reader.onload = function()
+ {
+  var output = document.getElementById('BlogImage');
+  output.src = reader.result;
+ }
+ reader.readAsDataURL(event.target.files[0]);
+}
+</script>
+</html>

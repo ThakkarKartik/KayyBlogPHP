@@ -9,11 +9,11 @@
     <!-- Navbar Search -->
     <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+        <input type="text" class="form-control" placeholder="Search .." aria-label="Blog Title" aria-describedby="basic-addon2">
         <div class="input-group-append">
-          <button class="btn btn-primary" type="button">
+          <a href="" class="btn btn-primary">
             <i class="fas fa-search"></i>
-          </button>
+          </a>
         </div>
       </div>
     </form>
@@ -69,34 +69,25 @@
           <span>Dashboard</span>
         </a>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Pages</span>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-          <h6 class="dropdown-header">Login Screens:</h6>
-          <a class="dropdown-item" href="login.html">Login</a>
-          <a class="dropdown-item" href="register.html">Register</a>
-          <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
-          <div class="dropdown-divider"></div>
-          <h6 class="dropdown-header">Other Pages:</h6>
-          <a class="dropdown-item" href="404.html">404 Page</a>
-          <a class="dropdown-item active" href="blank.html">Blank Page</a>
-        </div>
-      </li>
+      
       <li class="nav-item">
         <a class="nav-link" href="Users.php">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Users</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="#myModal" data-toggle="modal" data-target="#myModal">
           <i class="fas fa-fw fa-chart-area"></i>
-          <span>Blogs</span></a>
+          <span>Add New Blog</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="Blogs.php">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>My Blogs</span></a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link" href="#">
           <i class="fas fa-fw fa-table"></i>
           <span>Reviews</span></a>
       </li>
@@ -106,3 +97,29 @@
           <span>Logout</span></a>
       </li>
     </ul>
+    <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Add New Blog</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <form action="insertBlog.php" method="POST">
+        <!-- Modal body -->
+        <div class="modal-body">
+          
+            <input type="text" name="txtTitle" id="txtTitle" class="form-control"/>
+          
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-success"> Continue </button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>

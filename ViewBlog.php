@@ -25,7 +25,7 @@ include('links.php');?>
 
     <span> <?php 
     header("Content-Type: text/html; charset=utf-8");
-    echo  $Blog['Content']; ?></span>
+    echo stripslashes($Blog['Content']); ?></span>
     
 
 
