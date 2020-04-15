@@ -1,5 +1,4 @@
 <html>
-
 <head>
     <?php include('links.php'); ?>
     <?php include('config.php'); ?>
@@ -10,6 +9,38 @@
         selector: 'textarea#txtContent', //Change this value according to your HTML
         auto_focus: 'element1',
         plugins: "image media link table",
+        toolbar: 'undo redo | image code',
+        images_upload_url: 'upload.php',
+        images_upload_handler: function (blobInfo, success, failure) {
+        var xhr, formData;
+      
+        xhr = new XMLHttpRequest();
+        xhr.withCredentials = false;
+        xhr.open('POST', 'upload.php');
+      
+        xhr.onload = function() {
+            var json;
+        
+            if (xhr.status != 200) {
+                failure('HTTP Error: ' + xhr.status);
+                return;
+            }
+        
+            json = JSON.parse(xhr.responseText);
+        
+            if (!json || typeof json.location != 'string') {
+                failure('Invalid JSON: ' + xhr.responseText);
+                return;
+            }
+        
+            success(json.location);
+        };
+      
+        formData = new FormData();
+        formData.append('file', blobInfo.blob(), blobInfo.filename());
+      
+        xhr.send(formData);
+    },
 
     });
     </script>
@@ -78,7 +109,14 @@
         }
         $Content = addslashes($_REQUEST['txtContent']) or die($Content);
         $BlogID = $_GET['id'];
-        $sql = "update tblBlog set Title = '$txtTitle', Content = '$Content', ModifiedOn = now(), BlogImage='$FileName' where BlogID = $BlogID";
+        if($FileName == "")
+        {
+            $sql = "update tblBlog set Title = '$txtTitle', Content = '$Content', ModifiedOn = now() where BlogID = $BlogID";
+        }
+        else
+        {
+            $sql = "update tblBlog set Title = '$txtTitle', Content = '$Content', ModifiedOn = now(), BlogImage='$FileName' where BlogID = $BlogID";
+        }
         mysqli_query($link,$sql) or die(mysqli_error($link)); 
         header('location:Blogs.php');
     }
@@ -127,7 +165,6 @@
             <form method="POST" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-8">
-
                         <?php $title = $blog['Title']; ?>
                         <div class="input-group mt-3">
                             <label for="txtTitle" class="col-form-label mr-2"> Title : </label>
@@ -140,7 +177,6 @@
                         <div class="input-group mt-3">
                             <label for="txtBlogImage" class="col-form-label mr-2"> Blog Image : </label>
                             <input type="file" class="form-control-file border" name="txtBlogImage" accept="image/*" onchange="preview_image(event)" />
-
                         </div>
                     </div>
                     <div class="col-4 mt-2">
