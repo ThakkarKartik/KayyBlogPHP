@@ -27,12 +27,13 @@
                 </header>
                 <div class="row">
                     <?php
-                    $sql = "select * from tblBlog";
+                    $sql = "select * from tblBlog where Published = 1";
                     if ($result = mysqli_query($link, $sql)) {
                         while ($row = mysqli_fetch_array($result)) {
                             ?>
                     <div class="post col-md-4">
-                        <div class="post-thumbnail"><a href="ViewBlog.php?BlogID=<?php echo($row['BlogID']); ?>"><img src="UploadedFiles/<?php echo($row['BlogImage']) ?>" alt="..."
+                        <div class="post-thumbnail"><a href="ViewBlog.php?BlogID=<?php echo($row['BlogID']); ?>">
+                        <img src="UploadedFiles/BlogImage/<?php echo($row['BlogImage']) ?>" alt="..."
                                     class="img-fluid"></a></div>
                         <div class="post-details">
                             <div class="post-meta d-flex justify-content-between">

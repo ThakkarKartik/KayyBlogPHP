@@ -118,6 +118,27 @@
             $sql = "update tblBlog set Title = '$txtTitle', Content = '$Content', ModifiedOn = now(), BlogImage='$FileName' where BlogID = $BlogID";
         }
         mysqli_query($link,$sql) or die(mysqli_error($link)); 
+        //header('location:Blogs.php');
+    }
+    else if(isset($btnPublish))
+    {
+        $FileName="";
+        if(!empty($_FILES["txtBlogImage"]["name"]))
+        {
+            $FileName=Date('Ymds').$_FILES["txtBlogImage"]["name"];
+            move_uploaded_file($_FILES["txtBlogImage"]["tmp_name"],"../UploadedFiles/BlogImage/$FileName");
+        }
+        $Content = addslashes($_REQUEST['txtContent']) or die($Content);
+        $BlogID = $_GET['id'];
+        if($FileName == "")
+        {
+            $sql = "update tblBlog set Title = '$txtTitle', Content = '$Content', ModifiedOn = now(), Published = 1 where BlogID = $BlogID";
+        }
+        else
+        {
+            $sql = "update tblBlog set Title = '$txtTitle', Content = '$Content', ModifiedOn = now(), BlogImage='$FileName', Published = 1 where BlogID = $BlogID";
+        }
+        mysqli_query($link,$sql) or die(mysqli_error($link)); 
         header('location:Blogs.php');
     }
 ?>
@@ -193,6 +214,8 @@
                 <br />
                 <center>
                 <input type="submit" id="btnSave" name="btnSave" value="Save Changes"
+                    class="btn btn-primary col-lg-2" />
+                    <input type="submit" id="btnPublish" name="btnPublish" value="Save & Publish"
                     class="btn btn-primary col-lg-2" />
                     </center>
             </form>
