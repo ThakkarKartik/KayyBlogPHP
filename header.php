@@ -26,13 +26,13 @@
           <!-- Navbar Menu -->
           <div id="navbarcollapse" class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item"><a href="index.html" class="nav-link active ">Home</a>
+              <li class="nav-item"><a href="index.php" class="nav-link active ">Home</a>
               </li>
-              <li class="nav-item"><a href="blog.html" class="nav-link ">Blogs</a>
+              <li class="nav-item"><a href="index.php" class="nav-link ">Blogs</a>
               </li>
-              <li class="nav-item"><a href="post.html" class="nav-link ">Participate</a>
+              <li class="nav-item"><a href="participate.php" class="nav-link ">Participate</a>
               </li>
-              <li class="nav-item"><a href="#" class="nav-link ">Contact Us</a>
+              <li class="nav-item"><a href="contactUs.php" class="nav-link ">Contact Us</a>
               </li>
             </ul>
           </div>
