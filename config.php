@@ -18,10 +18,9 @@ if($link === false){
 
 function SessionCheck()
 {
-    if($_SESSION["AdminID"]==NULL || $_SESSION["AdminID"]=="")
+    if($_SESSION["loginID"]==NULL || $_SESSION["loginID"]=="")
     {
-        header("location:index.php");
+        header("location:login.php");
     }
-
 }
 ?>

@@ -4,11 +4,13 @@
 </head>
 <body>
     <?php include('header.php'); ?>
+    
+        
     <div class='container'>
-        <div class="row">
-            <div class="col-lg-6">
+    <div class="row">
+    <div class="col-lg-6">
     <section class='latest-posts'> 
-        <h3 style="color:blue"> Feel Free to give any Suggestion or Query anything  </h3>
+        <h5> Feel Free to give any Suggestion or Query anything  </h5>
          <form method="post">
             <div class="form-group mt-5">
                 <label for="txtName"> Name :</label>
@@ -27,14 +29,21 @@
     </section>
     </div>
     <div class="col-lg-6">
-        <section>
     <div class="widget latest-posts">
             <header>
-                <h3 class="h4">About Us</h3>
+                <h3 class="h2">About Us</h3>
             </header>
-            
+            <p class="text-big" style="text-align: justify">
+                KayyBlog.com is a Blogging Website Designed for Personal use for the writters and Authors who want to publish their work for free for the readers arround the world. Readers will find any kind of Blog on kayyBlog, like Stories, Articles, Recepies, Poems, Technical Lessions, Notes, etc. 
+                This Blog is not made for any commercial use Publish or Marketing. </p>
+                <hr/>
+                <p class="text-big" style="text-align: justify">
+                Website is not responsible for any misleading or harmfull Content as it is posted by different Authors around the World.accessibility-issue--error
+                </p><hr/><p class="text-big" style="text-align: justify">
+                KayyBlog is developed for Reading, Learning and Entertaintment purpose. 
+                <hr></p>
+            </p>
     </div>
-    </section>
     </div>
     </div>
     </div>

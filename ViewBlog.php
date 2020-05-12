@@ -14,6 +14,8 @@ include('links.php');?>
     <?php 
     if (isset($_GET["BlogID"])) {
         $BlogID = $_GET["BlogID"];
+        $updateView = "update tblBlog set TotalViews = (TotalViews + 1) where BlogID = $BlogID";
+        mysqli_query($link,$updateView);
         $sql = "Select * from tblBlog where BlogID = $BlogID";
         if ($result = mysqli_query($link, $sql)) {
             $Blog = mysqli_fetch_array($result);

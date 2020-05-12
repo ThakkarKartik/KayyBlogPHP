@@ -8,7 +8,7 @@
     tinymce.init({
         selector: 'textarea#txtContent', //Change this value according to your HTML
         auto_focus: 'element1',
-        plugins: "image media link table",
+        plugins: "image media link table code",
         toolbar: 'undo redo | image code',
         images_upload_url: 'upload.php',
         images_upload_handler: function (blobInfo, success, failure) {
@@ -111,11 +111,11 @@
         $BlogID = $_GET['id'];
         if($FileName == "")
         {
-            $sql = "update tblBlog set Title = '$txtTitle', Content = '$Content', ModifiedOn = now() where BlogID = $BlogID";
+            $sql = "update tblBlog set AboutBlog = '$txtAbout', Subject = '$txtSubject', Title = '$txtTitle', Content = '$Content', ModifiedOn = now() where BlogID = $BlogID";
         }
         else
         {
-            $sql = "update tblBlog set Title = '$txtTitle', Content = '$Content', ModifiedOn = now(), BlogImage='$FileName' where BlogID = $BlogID";
+            $sql = "update tblBlog set AboutBlog = '$txtAbout', Subject = '$txtSubject', Title = '$txtTitle', Content = '$Content', ModifiedOn = now(), BlogImage='$FileName' where BlogID = $BlogID";
         }
         mysqli_query($link,$sql) or die(mysqli_error($link)); 
         //header('location:Blogs.php');
@@ -132,11 +132,11 @@
         $BlogID = $_GET['id'];
         if($FileName == "")
         {
-            $sql = "update tblBlog set Title = '$txtTitle', Content = '$Content', ModifiedOn = now(), Published = 1 where BlogID = $BlogID";
+            $sql = "update tblBlog set AboutBlog = '$txtAbout',  Subject = '$txtSubject', Title = '$txtTitle', Content = '$Content', ModifiedOn = now(), Published = 1 where BlogID = $BlogID";
         }
         else
         {
-            $sql = "update tblBlog set Title = '$txtTitle', Content = '$Content', ModifiedOn = now(), BlogImage='$FileName', Published = 1 where BlogID = $BlogID";
+            $sql = "update tblBlog set AboutBlog = '$txtAbout',  Subject = '$txtSubject', Title = '$txtTitle', Content = '$Content', ModifiedOn = now(), BlogImage='$FileName', Published = 1 where BlogID = $BlogID";
         }
         mysqli_query($link,$sql) or die(mysqli_error($link)); 
         header('location:Blogs.php');
@@ -186,11 +186,32 @@
             <form method="POST" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-8">
-                        <?php $title = $blog['Title']; ?>
+                        <?php 
+                        $title = $blog['Title']; 
+                        $Subject = $blog['Subject'];
+                        $About = $blog['AboutBlog'];
+                        $BlogImage  = $blog['BlogImage'];
+                        ?>
+                        <div class="input-group mt-3">
+                            <label for="txtSubject" class="col-form-label mr-2"> Subject : </label>
+                            <br/>
+                            <input type="text" class="form-control" name="txtSubject" value="<?php echo($Subject)?>" placeholder="Subject or Area"/>
+                                
+
+                        </div>
                         <div class="input-group mt-3">
                             <label for="txtTitle" class="col-form-label mr-2"> Title : </label>
+                            <br/>
                             <input type="text" class="form-control" name="txtTitle"
                                 value="<?php echo($title)?>">
+
+                        </div>
+                        <div class="input-group mt-3">
+                            <label for="txtAbout" class="col-form-label mr-2"> About Blog: </label>
+                            <br/>
+                            <textarea name="txtAbout" id="txtAbout" rows="5" class="form-control">
+                            <?php echo($About); ?>
+                            </textarea>
 
                         </div>
                         <input type="hidden" id="hdnBlogID" value="<?php echo($blog['BlogID'])?>">
@@ -201,7 +222,7 @@
                         </div>
                     </div>
                     <div class="col-4 mt-2">
-                            <img src="" class="img img-thumbnail" id="BlogImage" name="BlogImage"/> 
+                            <img src="../UploadedFiles/BlogImage/<?php echo($BlogImage) ?>" class="img img-thumbnail" id="BlogImage" name="BlogImage"/> 
                     </div>
                 </div>
                 <br />
