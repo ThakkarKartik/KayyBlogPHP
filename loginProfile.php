@@ -22,18 +22,19 @@
             </div>
             <div class="col-md-4">
             <h3> <?=$user['FullName'] ?>'s Profile</h3>
+            <p> Works on <?=$user['Area'] ?></p>
             <h6> <?=$user['Email'] ?></h6>
-                <br/>
-                <P> <?=$user['AboutUser'] ?></P>
                 
+                <P> <?=$user['AboutUser'] ?></P>
+                <br/>
+                <a href="EditProfile.php" class="btn btn-primary btn-sm"> Edit Profile</a>
             </div>
         </div>
         <div class="container mt-5">
         <div class="latest-posts mt-2">
             <!-- <div class="container"> -->
-            <div class="col-md-12">
+            <div class="col-md-6">
               <?php
-
                         $sql = "select * from tblblog where UserID = $UserID";
                     if ($result = mysqli_query($link, $sql)) {
                         while ($row = mysqli_fetch_array($result)) {
@@ -41,14 +42,15 @@
               <div class="post-entry-2 d-flex">
               <div class="thumbnail" style="background-image: url('images/img_v_1.jpg')"></div>
               <div class="contents">
-                <h2><a href="blog-single.html">News Needs to Meet Its Audiences Where They Are</a></h2>
-                <p class="mb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi temporibus praesentium neque, voluptatum quam quibusdam.</p>
+                <h2><a href="ViewBlog.php?BlogID=<?php echo($row['BlogID']); ?>"><?=$row["Title"]?></a></h2>
+                <p class="mb-3"><?=$row["AboutBlog"]?></p>
                 <div class="post-meta">
-                  <span class="d-block"><a href="#">Dave Rogers</a> in <a href="#">News</a></span>
-                  <span class="date-read">Jun 14 <span class="mx-1">&bullet;</span> 3 min read <span class="icon-star2"></span></span>
+                  <span class="date-read"><?=$row["CreatedON"]?> </span> <?=$row["TotalViews"]?> <span class="icon-star2"></span></span>
                 </div>
+                <a href="EditBlog.php?BlogID=<?php echo($row['BlogID']); ?>">Edit Blog</a>
               </div>
-            </div>
+              </div>
+            </>
                 <?php
                         }
                     }

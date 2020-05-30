@@ -16,184 +16,86 @@ include('links.php');?>
         $BlogID = $_GET["BlogID"];
         $updateView = "update tblBlog set TotalViews = (TotalViews + 1) where BlogID = $BlogID";
         mysqli_query($link,$updateView);
-        $sql = "Select * from tblBlog where BlogID = $BlogID";
+        $sql = "Select * from tblBlog b, tbluser u where b.UserID = u.UserID and BlogID = $BlogID";
         if ($result = mysqli_query($link, $sql)) {
             $Blog = mysqli_fetch_array($result);
         }
     }
     ?>
-    <div class='container'>
-        <div class="row">
-            <!-- Latest Posts -->
-            <main class="post blog-post col-lg-8">
-                <div class="container">
-                    <div class="post-single">
-                        <div class="post-thumbnail">
-                            <img src="UploadedFiles/BlogImage/<?php echo($Blog["BlogImage"]) ?>" alt="..."
-                                class="img-fluid">
+    <div class="site-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 single-content">
+                <h1 class="mb-4">
+                        <?=$Blog["Title"]?>
+                    </h1>
+                
+                    <div class="post-meta d-flex mb-5">
+                        <div class="bio-pic mr-3">
+                            <img src="UploadedFiles/Users/<?=$Blog["ProfPic"]?>" alt="Image" class="img-fluidid">
                         </div>
-                        <div class="post-details">
-                            <div class="post-meta d-flex justify-content-between">
-                                <!-- <div class="category"><a href="#">Business</a><a href="#">Financial</a></div> -->
-                            </div>
-                            <h1><?php echo($Blog["Title"]); ?></h1>
-                            <div class="post-footer d-flex align-items-center flex-column flex-sm-row"><a href="#"
-                                    class="author d-flex align-items-center flex-wrap">
-                                    <!-- Users Details -->
-                                    <?php 
-                    $UserID = $Blog["UserID"];
-                    $sql = "Select * from tblUser where UserID = $UserID";
-                    if ($result = mysqli_query($link, $sql)) {
-                        $User = mysqli_fetch_array($result);
-                    }           
-                ?>
-                                    <div class="avatar">
-                                        <img src="UploadedFiles/Users/<?php echo($User["ProfPic"]) ?>" alt="..."
-                                            class="img-fluid">
-                                    </div>
-                                    <div class="title"><span><?php echo($User["FullName"]) ?></span></div>
-                                </a>
-                                <div class="d-flex align-items-center flex-wrap">
-                                    <div class="date"><i class="icon-clock"></i><?php echo($Blog["CreatedON"]) ?></div>
-                                    <div class="views"><i class="icon-eye"></i><?php echo($Blog["TotalViews"]) ?></div>
-                                </div>
-                            </div>
-                            <div class="post-body">
-                                <span> <?php 
-                // header("Content-Type: text/html; charset=utf-8");
-                        echo stripslashes($Blog['Content']); ?></span>
-                            </div>
-                            <div class="post-tags">
-                                <?php 
-                    $BlogID = $Blog["BlogID"];
-                    $sql = "Select * from tblTag where BlogID = $BlogID";
-                    if ($result = mysqli_query($link, $sql)) {
-                    while ($tag = mysqli_fetch_array($result)) {
-                        ?>
-                                <a href="#" class="tag">#<?php echo($tag["TagName"]) ?></a>
-                                <?php
-                    }
-                }
-                ?>
-                            </div>
-
-                            <div
-                                class="posts-nav d-flex justify-content-between align-items-stretch flex-column flex-md-row">
-                                <?php 
-                    // Previous Post
-                    if (isset($_GET["BlogID"])) {
-                        $BlogID = $_GET["BlogID"];
-                        $PrevBlogID = $BlogID - 1;
-                        $sql = "Select * from tblBlog where BlogID = $PrevBlogID";
-                        if ($result = mysqli_query($link, $sql)) {
-                            $PrevBlog = mysqli_fetch_array($result);
-                        ?>
-                                <a href="ViewBlog.php?BlogID=<?=$PrevBlog['BlogID'] ?>"
-                                    class="prev-post text-left d-flex align-items-center">
-                                    <div class="icon prev"><i class="fa fa-angle-left"></i></div>
-                                    <div class="text"><strong class="text-primary">Previous Post </strong>
-
-
-                                        <h6><?php echo($PrevBlog['Title']) ?></h6>
-                                    </div>
-                                </a>
-                                <?php
-                        }
-                    }?>
-                                <?php 
-                    // Next Post
-                    if (isset($_GET["BlogID"])) {
-                        $BlogID = $_GET["BlogID"];
-                        $NextBlogID = $BlogID + 1;
-                        $sql = "Select * from tblBlog where BlogID = $NextBlogID";
-                        if ($result = mysqli_query($link, $sql)) {
-                            $NextBlog = mysqli_fetch_array($result);
-                        ?>
-                                <a href="ViewBlog.php?BlogID=<?=$NextBlog['BlogID'] ?>"
-                                    class="next-post text-right d-flex align-items-center justify-content-end">
-
-                                    <div class="text"><strong class="text-primary">Next Post </strong>
-                                        <h6><?php echo($PrevBlog['Title']) ?></h6>
-                                    </div>
-                                    <div class="icon next"><i class="fa fa-angle-right"> </i></div>
-                                </a></div>
-                            <?php
-                        }
-                    }
-                    ?>
-                            <div class="post-comments">
-
-                            </div>
+                        <div class="vcard">
+                            <span class="d-block"><a href="userprofile.php?id=<?=$Blog["UserID"]?>"><?=$Blog["FullName"]?></a> in <a
+                                    href="#"><?=$Blog["Area"]?></a></span>
+                            <span class="date-read"><?=$Blog["CreatedON"]?> <span class="mx-1">&bullet;</span>
+                                <?=$Blog["TotalViews"]?> <span class="icon-star2"></span></span>
                         </div>
                     </div>
-            </main>
-            <aside class="col-lg-4">
-                <!-- Widget [Search Bar Widget]-->
-                <!-- <div class="widget search"> -->
-                    <!-- Advertisement Here -->
-                <!-- </div> -->
-                <!-- Widget [Latest Posts Widget]        -->
-                <div class="widget latest-posts">
-                    <header>
-                        <h3 class="h6">Latest Posts</h3>
-                    </header>
+                    <p class="mb-5">
+                        <img src="UploadedFiles/BlogImage/<?=$Blog["BlogImage"]?>" alt="Image" class="img-fluid">
+                    </p>
                     <?php 
-                        $sql = "Select * from tblBlog where Published = 1 limit 5";
-                        if ($result = mysqli_query($link, $sql)) {
-                            while ($Bloglist = mysqli_fetch_array($result)) {
-                                ?>
-                    <div class="blog-posts">
-                        <a href="ViewBlog.php?BlogID=<?=$Bloglist['BlogID']?>">
-                            <div class="item d-flex align-items-center">
-                                <div class="image"><img src="UploadedFiles/BlogImage/<?php echo($Bloglist["BlogImage"]) ?>" alt="..." class="img-fluid">
-                                </div>
-                                <div class="title"><strong><?php echo($Bloglist["Title"]) ?></strong>
-                                    <div class="d-flex align-items-center">
-                                        <div class="views"><i class="icon-eye"></i><?php echo($Bloglist["TotalViews"]) ?></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
+                    echo(stripcslashes($Blog["Content"]));
+            ?>
+                </div>
+                <div class="col-lg-3 ml-auto">
+                    <div class="section-title">
+                        <h2> More From Author</h2>
                     </div>
-                            <?php
+                        <?php 
+                            if (isset($_GET["BlogID"])) {
+                                $BlogID = $_GET["BlogID"];
+                                $UserID = $Blog["UserID"];
+                                $sql = "Select * from tblBlog where UserID = $UserID and BlogID <> $BlogID limit 3";
+                                if ($result = mysqli_query($link, $sql)) {
+                                    $cnt = 0;
+                                    while ($row = mysqli_fetch_array($result)) {
+                                        $cnt++;
+                                        ?>
+                                                <div class="trend-entry d-flex">
+                                                <div class="number align-self-start"><?=$cnt?></div>
+                                                <div class="trend-contents">
+                                                    <h2><a href="ViewBlog.php?BlogID=<?=$row["BlogID"]?>"><?=$row["Title"]?></a></h2>
+                                                    <div class="post-meta">
+                                                    <span class="date-read"><?=$row["CreatedON"]?><span class="mx-1">&bullet;</span> <?=$row["TotalViews"]?> <span class="icon-star2"></span></span>
+                                                    </div>
+                                                </div>
+                                                </div>
+                        <?php
+                                    }
+                                }
                             }
-                        }
-                            ?>
-                </div>
-                <!-- Widget [Categories Widget]-->
-                <!-- <div class="widget categories">
-                    <header>
-                        <h3 class="h6">Topics</h3>
-                    </header>
-                    <div class="item d-flex justify-content-between"><a href="#">Growth</a><span>12</span></div>
-                    <div class="item d-flex justify-content-between"><a href="#">Local</a><span>25</span></div>
-                    <div class="item d-flex justify-content-between"><a href="#">Sales</a><span>8</span></div>
-                    <div class="item d-flex justify-content-between"><a href="#">Tips</a><span>17</span></div>
-                    <div class="item d-flex justify-content-between"><a href="#">Local</a><span>25</span></div>
-                </div> -->
-                <!-- Widget [Tags Cloud Widget]-->
-                <div class="widget tags">
-                    <header>
-                        <h3 class="h6">Tags</h3>
-                    </header>
-                    <ul class="list-inline">
-                    <?php 
-                    $BlogID = $Blog["BlogID"];
-                    $sql = "Select * from tblTag where BlogID = $BlogID";
-                    if ($result = mysqli_query($link, $sql)) {
-                    while ($tag = mysqli_fetch_array($result)) {
                         ?>
-                                <li class="list-inline-item"><a href="#" class="tag">#<?php echo($tag["TagName"]) ?></a></li>
-                                <?php
-                    }
-                }
-                ?>    
-                    </ul>
+                    <div class="section-title">
+                        <h2>Tags</h2>
+                    </div>
+                        <?php 
+                            if (isset($_GET["BlogID"])) {
+                                $BlogID = $_GET["BlogID"];
+                                $sql = "Select * from tbltag where BlogID = $BlogID";
+                                if ($result = mysqli_query($link, $sql)) {
+                                    while($row = mysqli_fetch_array($result)){
+                                      ?>
+                                            <a class="btn btn-info m-1" href="TagSearch.php?TagID=<?= $BlogID?>"> #<?=$row["TagName"]?></a>
+                                            <?php
+                                    }
+                                }
+                            }
+                        ?>
                 </div>
-            </aside>
 
+            </div>
         </div>
-    </div>
         <?php include('footer.php'); ?>
 </body>
 <?php include('scripts.php'); ?>
