@@ -21,7 +21,7 @@
     <div class="site-section">
         <div class="container">
         <div class="row">
-            <div class="bg-info p-5 m-2 col-5">
+            <div class="bg-info p-5 m-2 col-md-5 col-sm-12">
             <form action="" method="post">
             <div class="form-group">
                 <label for="txtUserName" class="col-form-label ml-3" style="color:white">Email Address or Contact Number </label>
@@ -35,7 +35,7 @@
             <br/><br/><a href="forgetpassword.php" class="ml-2" style="color:white"> I Forgot my Password </a>
             </form>
             </div>
-            <div class="m-2 p-5 col-5">
+            <div class="m-2 p-5 col-md-5 col-sm-12">
             <h4 class="card-title"> Not a Member ? </h4>
             <p> You can be a renown Blogger by start Blogging on our Website and share it to your Friends and Family.
             </p> 
