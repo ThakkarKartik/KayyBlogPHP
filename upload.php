@@ -3,7 +3,7 @@
 $accepted_origins = array("http://localhost:8080", "http://auctor.in");
 
 // Images upload path
-$imageFolder = "../UploadedFiles/BlogImage/";
+$imageFolder = "UploadedFiles/BlogImage/";
 
 reset($_FILES);
 $temp = current($_FILES);

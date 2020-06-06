@@ -13,11 +13,12 @@
     }
 ?>
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-    <?php include('header.php'); ?>
+<div class="site-wrap">
+<?php include('header.php'); ?>
     <div class="site-section">
     <div class='container'>
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-2 mb-5">
                 <img src="UploadedFiles/Users/<?php echo($user['ProfPic']) ?>" class="img img-thumbnail" />
             </div>
             <div class="col-md-4">
@@ -27,29 +28,60 @@
                 
                 <P> <?=$user['AboutUser'] ?></P>
                 <br/>
-                <a href="EditProfile.php" class="btn btn-primary btn-sm"> Edit Profile</a>
+                <a href="EditProfile.php" class="alert-link mr-5"> Edit Profile</a>
+                <a href="ChangePassword.php" class="alert-link mr-5" href="#myModalCP" data-toggle="modal" data-target="#myModalCP"> Change Password</a>
             </div>
-        </div>
-        <div class="container mt-5">
+            <div class="col-md-6 text-right">
+                <p class="text"> Feel to write today ?</p>
+                    <!-- <input type="button" class="btn btn-light" value=" Create New Post "/> -->
+                    <a class="btn btn-success" href="#myModal" data-toggle="modal" data-target="#myModal">
+                        Add New Blog
+                    </a>
+            </div>
+</div>
+<hr/>
+<h4 class="mt-5"> Your Blogs </h4>    
+        <div class="container p-2 border">
+            
         <div class="latest-posts mt-2">
-            <!-- <div class="container"> -->
-            <div class="col-md-6">
+        
+        <!-- <div class="container"> -->
+            <div class="col-md-12">
+            
               <?php
-                        $sql = "select * from tblblog where UserID = $UserID";
+                        $sql = "select * from tblblog where UserID = $UserID and IsActive=1";
                     if ($result = mysqli_query($link, $sql)) {
                         while ($row = mysqli_fetch_array($result)) {
                             ?>
+                            <div class="row">
+                            <div class="col-6">
               <div class="post-entry-2 d-flex">
-              <div class="thumbnail" style="background-image: url('images/img_v_1.jpg')"></div>
+              <div class="thumbnail" style="background-image: url('UploadedFiles/BlogImage/<?php echo($row['BlogImage']) ?>')"></div>
               <div class="contents">
-                <h2><a href="ViewBlog.php?BlogID=<?php echo($row['BlogID']); ?>"><?=$row["Title"]?></a></h2>
+                <h2><a href="BlogEdit.php?id=<?php echo($row['BlogID']); ?>"><?=$row["Title"]?></a></h2>
                 <p class="mb-3"><?=$row["AboutBlog"]?></p>
                 <div class="post-meta">
                   <span class="date-read"><?=$row["CreatedON"]?> </span> <?=$row["TotalViews"]?> <span class="icon-star2"></span></span>
                 </div>
-                <a href="EditBlog.php?BlogID=<?php echo($row['BlogID']); ?>">Edit Blog</a>
+                <!-- <a href="EditBlog.php?BlogID=<?php echo($row['BlogID']); ?>">Edit Blog</a> -->
               </div>
               </div>
+              </div>
+              <div>
+              <?php 
+                if ($row["Published"] == 1) {
+                    ?>
+                  <input type="button" disabled value="Published" class="btn btn-success btn-sm" onclick="return unpublish(<?=$row['BlogID'] ?>)"/>        
+                  <?php
+                }
+                else
+                {
+                  ?>
+                  <input type="button" disabled value="Unpublished" class="btn btn-danger btn-sm" onclick="return publish(<?=$row['BlogID'] ?>)"/>        
+                <?php }?>
+              </div>
+              </div>
+              
             </>
                 <?php
                         }
@@ -61,7 +93,55 @@
         </div>
     </div>
     </div>
+
     <?php include('footer.php'); ?>
+    <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Add New Blog</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <form action="insertBlog.php" method="POST">
+        <!-- Modal body -->
+        <div class="modal-body">
+            <input type="text" name="txtTitle" id="txtTitle" class="form-control"/>
+        </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-success"> Continue </button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="modal" id="myModalCP">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Change Password</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <form action="insertBlog.php" method="POST">
+        <!-- Modal body -->
+        <div class="modal-body">
+            <input type="password" placeholder="OLD PASSWORD" name="txtOldPassword" id="txtOldPassword" class="form-control mt-1"/>
+            <input type="password" placeholder="NEW PASSWORD" name="txtNewPassword" id="txtNewPassword" class="form-control mt-1"/>
+            <input type="password" placeholder="CONFIRM PASSWORD" name="txtConPassword" id="txtConPassword" class="form-control mt-1"/>
+        </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-success"> Change Password </button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  </div>    
 </body>
 <?php include('scripts.php'); ?>
 </html>

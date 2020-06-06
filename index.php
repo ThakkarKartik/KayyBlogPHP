@@ -1,22 +1,18 @@
 <html>
-
 <head>
     <?php include('links.php');?>
     <?php include('config.php'); ?>
 </head>
-
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-
     <div class="site-wrap">
         <?php include('header.php'); ?>
         <div class="site-section py-0">
             <div class="owl-carousel hero-slide owl-style">
                 <?php
-                        $sql = "SELECT * FROM tblblog b, tbluser u where b.UserID = u.UserID and b.Published = 1 order by b.CreatedOn desc";
+                        $sql = "SELECT * FROM tblblog b, tbluser u where b.UserID = u.UserID and b.Published = 1 and b.IsActive = 1 order by b.CreatedOn desc limit 5";
                     if ($result = mysqli_query($link, $sql)) {
                         while ($row = mysqli_fetch_array($result)) {
                             ?>
-
                 <div class="site-section">
                     <div class="container">
                         <div class="half-post-entry d-block d-lg-flex bg-light">
@@ -26,9 +22,8 @@
                                 <h2><a href="ViewBlog.php?BlogID=<?php echo($row['BlogID']); ?>"><?php echo($row['Title']); ?></a></h2>
                                 <p class="mb-3"><?php echo($row['AboutBlog']); ?>
                                 </p>
-
                                 <div class="post-meta">
-                                    <span class="d-block"><a href="#"><?php echo($row['FullName']); ?></a> in <a href="#">Area of Writer</a></span>
+                                    <span class="d-block"><a href="#"><?php echo($row['FullName']); ?></a> in <a href="#">Area of <?=$row["Area"]?></a></span>
                                     <span class="date-read"><?php echo($row['CreatedOn']); ?><span class="mx-1">&bullet;</span> <?php echo($row['TotalViews']); ?> <span
                                             class="icon-star2"></span></span>
                                 </div>
@@ -49,11 +44,11 @@
         <div class="site-section">
       <div class="container">
         <div class="row">
-          <div class="col-lg-8">
+          <div class="col-lg-12">
             <div class="row">
               <div class="col-12">
                 <div class="section-title">
-                  <h2>Latest Uploaded</h2>
+                  <h3 class="color-black-opacity-5">Latest Uploaded</h3>
                 </div>
               </div>
             </div>
@@ -79,7 +74,7 @@
               </div>
               <div class="col-md-6">
               <?php
-                        $sql = "select * from tblblog b, tbluser u where b.UserID = u.UserID and b.IsEditorChoice = 0 limit 3";
+                        $sql = "select * from tblblog b, tbluser u where b.UserID = u.UserID and Published = 1 and b.IsEditorChoice = 0 limit 4";
                     if ($result = mysqli_query($link, $sql)) {
                         while ($row = mysqli_fetch_array($result)) {
                             ?>
@@ -98,12 +93,14 @@
                         }
                     }
                     ?>
+                    
             </div>
+            <a href="AllBlogs.php" class="btn btn-primary align-center col-md-12"> View More </a>
             </div>
           </div>
-          <div class="col-lg-4 bg-light">
+          <div class="col-lg-4">
             <div class="section-title">
-              <h2> Google Ads </h2>
+              <h2>  </h2>
             </div>
             
           </div>

@@ -43,6 +43,8 @@
     $sql = "select * from tblUser where UserID = $UserID";
     if ($result = mysqli_query($link, $sql)) {
         $row = mysqli_fetch_array($result);
+    }
+    
     ?>
     <div id="content-wrapper">
         <div class="container-fluid">
@@ -98,10 +100,7 @@
             <!-- Page Content Ends Here -->
         </div>
     </div>
-    <?php
-    }
-    ?>
-    <?php include('footer.php'); ?>
+       <?php include('footer.php'); ?>
 </body>
 <?php include('scripts.php'); ?>
 <script>

@@ -21,7 +21,7 @@
     <div class="site-section">
         <div class="container">
         <div class="row">
-            <div class="bg-info p-5 m-2 col-md-5 col-sm-12">
+            <div class="bg-dark p-5 m-2 col-md-5 col-sm-12">
             <form action="" method="post">
             <div class="form-group">
                 <label for="txtUserName" class="col-form-label ml-3" style="color:white">Email Address or Contact Number </label>

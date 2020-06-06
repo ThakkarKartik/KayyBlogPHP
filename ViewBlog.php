@@ -32,7 +32,7 @@ include('links.php');?>
                 
                     <div class="post-meta d-flex mb-5">
                         <div class="bio-pic mr-3">
-                            <img src="UploadedFiles/Users/<?=$Blog["ProfPic"]?>" alt="Image" class="img-fluidid">
+                            <img src="UploadedFiles/Users/<?=$Blog["ProfPic"]?>" alt="Image" class="img-fluid circular">
                         </div>
                         <div class="vcard">
                             <span class="d-block"><a href="userprofile.php?id=<?=$Blog["UserID"]?>"><?=$Blog["FullName"]?></a> in <a
