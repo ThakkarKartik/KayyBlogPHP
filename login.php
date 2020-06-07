@@ -20,6 +20,23 @@
     <?php include('header.php'); ?>
     <div class="site-section">
         <div class="container">
+            <?php 
+                $passchange = null;
+                if (isset($_GET["change"])) {
+                    $passchange = $_GET["change"];
+                }
+                if($passchange == 'true')
+                {
+                    ?>
+                    <span class="col-10 alert-info text-center m-2 p-2"> Password is Changed, Login with your New Password  </span>
+                    <?php
+                }
+                else if($passchange == 'false'){
+                    ?>
+                    <span class="col-10 alert-danger text-center m-2 p-2"> Password not Changed, Login with your Old Password  </span>
+                    <?php
+                }
+            ?>
         <div class="row">
             <div class="bg-dark p-5 m-2 col-md-5 col-sm-12">
             <form action="" method="post">

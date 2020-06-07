@@ -211,7 +211,7 @@
                 <input type="submit" id="btnSave" name="btnSave" value=" Save Changes "
                     class="btn btn-primary col-lg-3 mt-2" />
                     <?php 
-                if ($blog["Published"] == 1) {
+                if ($blog["Published"] == 0) {
                     ?>
                     <input type="submit" id="btnPublish" name="btnPublish" value=" Publish "
                     class="btn btn-primary col-lg-3 mt-2" />

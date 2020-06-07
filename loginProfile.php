@@ -29,7 +29,7 @@
                 <P> <?=$user['AboutUser'] ?></P>
                 <br/>
                 <a href="EditProfile.php" class="alert-link mr-5"> Edit Profile</a>
-                <a href="ChangePassword.php" class="alert-link mr-5" href="#myModalCP" data-toggle="modal" data-target="#myModalCP"> Change Password</a>
+                <a href="#" class="alert-link mr-5" href="#myModalCP" data-toggle="modal" data-target="#myModalCP"> Change Password</a>
             </div>
             <div class="col-md-6 text-right">
                 <p class="text"> Feel to write today ?</p>
@@ -125,12 +125,12 @@
           <h4 class="modal-title">Change Password</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
-        <form action="insertBlog.php" method="POST">
+        <form action="ChangePassword.php" method="POST">
         <!-- Modal body -->
         <div class="modal-body">
             <input type="password" placeholder="OLD PASSWORD" name="txtOldPassword" id="txtOldPassword" class="form-control mt-1"/>
             <input type="password" placeholder="NEW PASSWORD" name="txtNewPassword" id="txtNewPassword" class="form-control mt-1"/>
-            <input type="password" placeholder="CONFIRM PASSWORD" name="txtConPassword" id="txtConPassword" class="form-control mt-1"/>
+            <input type="password" placeholder="CONFIRM PASSWORD" name="txtConPassword" id="txtConPassword" class="form-control mt-1" onblur="return checkpass();" />
         </div>
         <!-- Modal footer -->
         <div class="modal-footer">
@@ -144,4 +144,19 @@
   </div>    
 </body>
 <?php include('scripts.php'); ?>
+<script>
+  function checkpass(){
+      var newpass = document.getElementById('txtNewPassword').value;
+      var conpass = document.getElementById('txtConPassword').value;
+      if(newpass == conpass)
+      {
+        return true;
+      }
+      else
+      {
+        alert("Password does not match");
+        return false;
+      }
+  }
+</script>
 </html>
