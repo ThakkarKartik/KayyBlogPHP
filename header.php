@@ -46,7 +46,7 @@
               <a href="index.php" class="nav-link text-left">Home</a>
             </li>
             <li>
-              <a href="#" class="nav-link text-left">Trending Topics</a>
+              <a href="blogs.php" class="nav-link text-left">Trending Topics</a>
             </li>
             <li>
             <?php 

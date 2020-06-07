@@ -208,16 +208,27 @@
                 <br />
                 <br />
                 <center>
-                <input type="submit" id="btnSave" name="btnSave" value="Save Changes"
-                    class="btn btn-primary col-lg-3 mt-3" />
-                    <input type="submit" id="btnPublish" name="btnPublish" value="Save & Publish"
-                    class="btn btn-primary col-lg-3 mt-3" />
-                    <input type="submit" id="btnRemove" name="btnRemove" value="Remove this Blog"
-                    class="btn btn-danger col-lg-3 mt-3" formnovalidate />
-                    
+                <input type="submit" id="btnSave" name="btnSave" value=" Save Changes "
+                    class="btn btn-primary col-lg-3 mt-2" />
+                    <?php 
+                if ($blog["Published"] == 1) {
+                    ?>
+                    <input type="submit" id="btnPublish" name="btnPublish" value=" Publish "
+                    class="btn btn-primary col-lg-3 mt-2" />
+                    <?php
+                }
+                else
+                {
+                  ?>
+                <input type="submit" id="btnUnpublish" name="btnUnpublish" value=" Unpublish "
+                    class="btn btn-danger col-lg-3 mt-2" />
+                <?php }?>
+                    <input type="submit" id="btnRemove" name="btnRemove" value=" Remove "
+                    class="btn btn-danger col-lg-3 mt-2" formnovalidate />
+                     
                     </center>
             </form>
-            <div class="card mx-auto mt-2">
+            <div class="card mx-auto mt-4">
                 <div class="card-header">
                     <form method="post" action="tag_ins.php">
                         <div class="input-group">

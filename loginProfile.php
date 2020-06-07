@@ -41,7 +41,7 @@
 </div>
 <hr/>
 <h4 class="mt-5"> Your Blogs </h4>    
-        <div class="container p-2 border">
+        <div class="container">
             
         <div class="latest-posts mt-2">
         
@@ -53,35 +53,35 @@
                     if ($result = mysqli_query($link, $sql)) {
                         while ($row = mysqli_fetch_array($result)) {
                             ?>
-                            <div class="row">
-                            <div class="col-6">
+                    <a href="BlogEdit.php?id=<?php echo($row['BlogID']); ?>">
+                    <div class="row">
+                            <div class="col-md-8 col-sm-12 border m-1 p-2" >
               <div class="post-entry-2 d-flex">
               <div class="thumbnail" style="background-image: url('UploadedFiles/BlogImage/<?php echo($row['BlogImage']) ?>')"></div>
               <div class="contents">
-                <h2><a href="BlogEdit.php?id=<?php echo($row['BlogID']); ?>"><?=$row["Title"]?></a></h2>
+                <h4><?=$row["Title"]?></h4>
                 <p class="mb-3"><?=$row["AboutBlog"]?></p>
                 <div class="post-meta">
                   <span class="date-read"><?=$row["CreatedON"]?> </span> <?=$row["TotalViews"]?> <span class="icon-star2"></span></span>
                 </div>
+                <br/>
                 <!-- <a href="EditBlog.php?BlogID=<?php echo($row['BlogID']); ?>">Edit Blog</a> -->
-              </div>
-              </div>
-              </div>
-              <div>
-              <?php 
+                <?php 
                 if ($row["Published"] == 1) {
                     ?>
-                  <input type="button" disabled value="Published" class="btn btn-success btn-sm" onclick="return unpublish(<?=$row['BlogID'] ?>)"/>        
+                  <span class="btn-danger p-2"> Not Published </span>        
                   <?php
                 }
                 else
                 {
                   ?>
-                  <input type="button" disabled value="Unpublished" class="btn btn-danger btn-sm" onclick="return publish(<?=$row['BlogID'] ?>)"/>        
-                <?php }?>
+                  <span class="btn-success p-2"> Published </span>
+                <?php }?>  
               </div>
               </div>
-              
+              </div>
+              </div>
+              </a>
             </>
                 <?php
                         }
