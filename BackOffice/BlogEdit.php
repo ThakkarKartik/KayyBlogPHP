@@ -111,11 +111,11 @@
         $BlogID = $_GET['id'];
         if($FileName == "")
         {
-            $sql = "update tblBlog set AboutBlog = '$txtAbout', Subject = '$txtSubject', Title = '$txtTitle', Content = '$Content', ModifiedOn = now() where BlogID = $BlogID";
+            $sql = "update tblblog set AboutBlog = '$txtAbout', Subject = '$txtSubject', Title = '$txtTitle', Content = '$Content', ModifiedOn = now() where BlogID = $BlogID";
         }
         else
         {
-            $sql = "update tblBlog set AboutBlog = '$txtAbout', Subject = '$txtSubject', Title = '$txtTitle', Content = '$Content', ModifiedOn = now(), BlogImage='$FileName' where BlogID = $BlogID";
+            $sql = "update tblblog set AboutBlog = '$txtAbout', Subject = '$txtSubject', Title = '$txtTitle', Content = '$Content', ModifiedOn = now(), BlogImage='$FileName' where BlogID = $BlogID";
         }
         mysqli_query($link,$sql) or die(mysqli_error($link)); 
         //header('location:Blogs.php');
@@ -132,11 +132,11 @@
         $BlogID = $_GET['id'];
         if($FileName == "")
         {
-            $sql = "update tblBlog set AboutBlog = '$txtAbout',  Subject = '$txtSubject', Title = '$txtTitle', Content = '$Content', ModifiedOn = now(), Published = 1 where BlogID = $BlogID";
+            $sql = "update tblblog set AboutBlog = '$txtAbout',  Subject = '$txtSubject', Title = '$txtTitle', Content = '$Content', ModifiedOn = now(), Published = 1 where BlogID = $BlogID";
         }
         else
         {
-            $sql = "update tblBlog set AboutBlog = '$txtAbout',  Subject = '$txtSubject', Title = '$txtTitle', Content = '$Content', ModifiedOn = now(), BlogImage='$FileName', Published = 1 where BlogID = $BlogID";
+            $sql = "update tblblog set AboutBlog = '$txtAbout',  Subject = '$txtSubject', Title = '$txtTitle', Content = '$Content', ModifiedOn = now(), BlogImage='$FileName', Published = 1 where BlogID = $BlogID";
         }
         mysqli_query($link,$sql) or die(mysqli_error($link)); 
         header('location:Blogs.php');
@@ -158,7 +158,7 @@
             <?php 
             SessionCheck();
             $bid = $_GET['id'];
-            $sql = "select * from tblBlog where BlogID = $bid";
+            $sql = "select * from tblblog where BlogID = $bid";
             $blog = mysqli_fetch_array(mysqli_query($link,$sql)) or die(mysqli_error($link));
         ?>
             <div class="card mx-auto mt-2">

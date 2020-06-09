@@ -14,7 +14,7 @@ if(isset($btnSave))
         $FileName=Date('Ymds').$_FILES["txtFile"]["name"];
         move_uploaded_file($_FILES["txtFile"]["tmp_name"],"../UploadedFiles/Users/$FileName");
     }
-    $str = "insert into tbluser values (null,'$txtFName','$txtEmail','$txtContactNo','$FileName','$txtPassword',now(),1,'',1)";
+    $str = "insert into tbluser(FullName,Email,ContactNo,ProfPic,Password,CreatedOn,IsActive,AboutUser,IsAdmin) values ('$txtFName','$txtEmail','$txtContactNo','$FileName','$txtPassword',now(),1,'',1)";
     mysqli_query($link,$str) or die(mysqli_error($link));
     header("location:Users.php");
 }

@@ -1,10 +1,10 @@
 <?php
 /* Database credentials. Assuming you are running MySQL
 server with default setting (user 'root' with no password) */
-define('DB_SERVER', 'localhost');
-define('DB_USERNAME', 'root');
-define('DB_PASSWORD', '');
-define('DB_NAME', 'kayyblog');
+define('DB_SERVER', '50.62.209.112:3306');
+define('DB_USERNAME', 'thakkar.kartik');
+define('DB_PASSWORD', 'kartik123');
+define('DB_NAME', 'auctorDB');
 
 session_start(); 
 extract($_REQUEST); // Creating PHP Variables corresponding to Control

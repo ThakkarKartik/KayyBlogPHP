@@ -4,12 +4,12 @@
     $NewPass = $_REQUEST['txtNewPassword'];
 
     $userID = $_SESSION['loginID'];
-    $sql = "select * from tblUser where UserID = $userID";
+    $sql = "select * from tbluser where UserID = $userID";
     $record = mysqli_query($link, $sql) or die(mysqli_error($link."->".$sql));
     $row = mysqli_fetch_array($record);
     if ($row["Password"] == $OldPass) {
         
-            $sql = "update tblUser set password = '$NewPass' where UserID = $userID";
+            $sql = "update tbluser set password = '$NewPass' where UserID = $userID";
             mysqli_query($link, $sql) or die(mysqli_error($link."->".$sql));
             header("location:login.php?change=true");
     }

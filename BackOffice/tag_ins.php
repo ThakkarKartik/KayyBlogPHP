@@ -3,7 +3,7 @@ include("config.php");
 $blogid = $_POST['BlogID'];
 $name = $_POST['Name'];
 if($name != ''){
-    $sql = "insert into tblTag values(null,'$name',$blogid,now())";
+    $sql = "insert into tbltag values(null,'$name',$blogid,now())";
     mysqli_query($link,$sql) or die(mysqli_error($link)); 
 }
 $sql2 = "select * from tbltag where BlogID = $blogid";

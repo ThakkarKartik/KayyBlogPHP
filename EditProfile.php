@@ -74,7 +74,7 @@
             <?php
                     SessionCheck();
                     $UserID = $_SESSION["loginID"];
-                    $sql = "select * from tblUser where UserID = $UserID";
+                    $sql = "select * from tbluser where UserID = $UserID";
                     if($result = mysqli_query($link,$sql))
                     {
                         $user = mysqli_fetch_array($result);
@@ -86,7 +86,7 @@
                         $FileName=Date('Ymds').$_FILES["UserPic"]["name"];
                         move_uploaded_file($_FILES["UserPic"]["tmp_name"],"UploadedFiles/Users/$FileName");
                     }
-                    $sql = "update tblUser set FullName = '$txtName', AboutUser = '$txtAbout', Area = '$txtArea', ProfPic = '$FileName' where UserID = $UserID";
+                    $sql = "update tbluser set FullName = '$txtName', AboutUser = '$txtAbout', Area = '$txtArea', ProfPic = '$FileName' where UserID = $UserID";
                     mysqli_query($link,$sql) or die(mysqli_error($link)." -> ".$sql);
                     
 

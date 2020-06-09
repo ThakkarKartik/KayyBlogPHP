@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <?php 
 include('links.php');?>
     <?php include('config.php'); ?>
@@ -14,9 +14,9 @@ include('links.php');?>
     <?php 
     if (isset($_GET["BlogID"])) {
         $BlogID = $_GET["BlogID"];
-        $updateView = "update tblBlog set TotalViews = (TotalViews + 1) where BlogID = $BlogID";
+        $updateView = "update tblblog set TotalViews = (TotalViews + 1) where BlogID = $BlogID";
         mysqli_query($link,$updateView);
-        $sql = "Select * from tblBlog b, tbluser u where b.UserID = u.UserID and BlogID = $BlogID";
+        $sql = "Select * from tblblog b, tbluser u where b.UserID = u.UserID and BlogID = $BlogID";
         if ($result = mysqli_query($link, $sql)) {
             $Blog = mysqli_fetch_array($result);
         }
@@ -56,7 +56,7 @@ include('links.php');?>
                             if (isset($_GET["BlogID"])) {
                                 $BlogID = $_GET["BlogID"];
                                 $UserID = $Blog["UserID"];
-                                $sql = "Select * from tblBlog where UserID = $UserID and BlogID <> $BlogID limit 3";
+                                $sql = "Select * from tblblog where UserID = $UserID and BlogID <> $BlogID limit 3";
                                 if ($result = mysqli_query($link, $sql)) {
                                     $cnt = 0;
                                     while ($row = mysqli_fetch_array($result)) {

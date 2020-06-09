@@ -6,7 +6,7 @@
 <?php 
     SessionCheck();
     $UserID = $_SESSION["loginID"];
-    $sql = "select * from tblUser where UserID = $UserID";
+    $sql = "select * from tbluser where UserID = $UserID";
     if($result = mysqli_query($link,$sql))
     {
         $user = mysqli_fetch_array($result);
@@ -30,6 +30,7 @@
                 <br/>
                 <a href="EditProfile.php" class="alert-link mr-5"> Edit Profile</a>
                 <a href="#" class="alert-link mr-5" href="#myModalCP" data-toggle="modal" data-target="#myModalCP"> Change Password</a>
+				<a class="alert-link mr-5" href="login.php"> Signout </a>
             </div>
             <div class="col-md-6 text-right">
                 <p class="text"> Feel to write today ?</p>
@@ -67,7 +68,7 @@
                 <br/>
                 <!-- <a href="EditBlog.php?BlogID=<?php echo($row['BlogID']); ?>">Edit Blog</a> -->
                 <?php 
-                if ($row["Published"] == 1) {
+                if ($row["Published"] == 0) {
                     ?>
                   <span class="btn-danger p-2"> Not Published </span>        
                   <?php

@@ -62,7 +62,7 @@
             } ?>
             </li>
             <li>
-                <a href="#" class="nav-link text-left">Who we are ?</a>
+                <a href="t&c.php" class="nav-link text-left">Terms and Conditions</a>
             </li>
             <li><a href="contactUs.php" class="nav-link text-left">Contact</a></li>
           </ul>                                                                                                                                                                                                                                                                                         

@@ -30,7 +30,7 @@ SessionCheck();
             <a href="UserAU.php" class="btn btn-primary"> Add New </a>
             <br /><br />
             <?php
-        $sql = "SELECT * FROM tblUser";
+        $sql = "SELECT * FROM tbluser";
         if ($result = mysqli_query($link, $sql)) {
 
         ?>

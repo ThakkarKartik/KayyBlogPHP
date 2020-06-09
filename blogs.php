@@ -73,7 +73,8 @@
                                         style="background-image: url('UploadedFiles/BlogImage/<?php echo($row['BlogImage']) ?>')">
                                     </div>
                                     <div class="contents">
-                                        <h4><?=$row["Title"]?></h4>
+                                        <h4><a href="ViewBlog.php?BlogID=<?php echo($row['BlogID']); ?>">
+                                        <?=$row["Title"]?></a></h4>
                                         <p class="mb-3"><?=$row["AboutBlog"]?></p>
                                         <div class="post-meta">
                                             <span class="date-read"><?=$row["CreatedON"]?> </span>

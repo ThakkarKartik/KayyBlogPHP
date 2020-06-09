@@ -3,7 +3,7 @@ include("config.php");
 $blogid = $_POST['BlogID'];
 $Tagid = $_POST['TagID'];
 if($Tagid != ''){
-    $sql = "delete from tblTag where TagID = $Tagid";
+    $sql = "delete from tbltag where TagID = $Tagid";
     mysqli_query($link,$sql) or die(mysqli_error($link)); 
 }
 $sql2 = "select * from tbltag where BlogID = $blogid";

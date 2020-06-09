@@ -40,7 +40,7 @@
     <?php
     SessionCheck();
     $UserID = $_SESSION["UserID"];
-    $sql = "select * from tblUser where UserID = $UserID";
+    $sql = "select * from tbluser where UserID = $UserID";
     if ($result = mysqli_query($link, $sql)) {
         $row = mysqli_fetch_array($result);
     }

@@ -3,7 +3,8 @@
 <?php include('links.php');?>
 <?php include('config.php');?>
 </head>
-<?php 
+<?php
+	$_SESSION["loginID"] = null;
     if(isset($btnSignin)){
         $sql = "select * from tbluser where (Email = '$txtUserName' or ContactNo = '$txtUserName') and Password = '$txtPassword' and IsActive = 1";
         $Result = mysqli_query($link,$sql) or die(mysqli_error($link)."->".$sql);

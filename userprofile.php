@@ -5,7 +5,7 @@
 </head>
 <?php 
     $UserID = $_GET["id"];
-    $sql = "select * from tblUser where UserID = $UserID";
+    $sql = "select * from tbluser where UserID = $UserID";
     if ($result = mysqli_query($link, $sql)) {
         $user = mysqli_fetch_array($result);
     }
@@ -16,7 +16,7 @@
     <div class='container'>
         <div class="row">
             <div class="col-md-2">
-                <img src="UploadedFiles/Users/<?php echo($user['ProfPic']) ?>" class="img img-thumbnail" />
+                <img src="UploadedFiles/Users/<?php echo($user['ProfPic']) ?>" class="img img-thumbnail" oncontextmenu="return false" />
             </div>
             <div class="col-md-4">
             <h3> <?=$user['FullName'] ?>'s Profile</h3>

@@ -95,7 +95,7 @@
                     ?>
                     
             </div>
-            <a href="AllBlogs.php" class="btn btn-primary align-center col-md-12"> View More </a>
+            <a href="blogs.php" class="btn btn-primary align-center col-md-12"> View More </a>
             </div>
           </div>
           <div class="col-lg-4">
